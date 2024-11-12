@@ -80,7 +80,12 @@ function blueConverter() {
   let outputPath = 'output/tucan_blue.jpg';
   let pixels = handler.getPixels();
 
-  //Aqui tu codigo
+  for (let row = 0; row < pixels.length; row++) {
+    for (let col = 0; col < pixels[row].length; col++) {
+      pixels[row][col][0] = 0;
+      pixels[row][col][1] = 0;
+    }
+  }
 
   handler.savePixels(pixels, outputPath);
 }
@@ -204,7 +209,7 @@ function merge(alphaFirst, alphaSecond) {
  *     Negativo: 8
  *     Fusion de imagenes: 9
  */
-let optionN = 2;
+let optionN = 3;
 
 switch (optionN) {
   case 1: redConverter(); break;
