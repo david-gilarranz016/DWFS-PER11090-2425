@@ -218,9 +218,19 @@ function merge(alphaFirst, alphaSecond) {
   let catPixels = catHandler.getPixels();
   let dogPixels = dogHandler.getPixels();
 
-  let pixels = [];
+  let pixels = []; 
 
-  //Aqui tu codigo
+  for (let row = 0; row < catPixels.length; row++) {
+    pixels.push([]);
+
+    for (let col = 0; col < catPixels[row].length; col++) {
+      pixels[row].push([])
+
+      for (let channel = 0; channel < catPixels[row][col].length; channel++) {
+        pixels[row][col].push(alphaFirst * dogPixels[row][col][channel] + alphaSecond * catPixels[row][col][channel]);
+      }
+    }
+  }
 
   dogHandler.savePixels(pixels, outputPath);
 }
@@ -244,7 +254,7 @@ function merge(alphaFirst, alphaSecond) {
  *     Negativo: 8
  *     Fusion de imagenes: 9
  */
-let optionN = 8;
+let optionN = 9;
 
 switch (optionN) {
   case 1: redConverter(); break;
