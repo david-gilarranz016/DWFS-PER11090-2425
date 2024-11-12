@@ -153,9 +153,13 @@ function scaleDown() {
   let outputPath = 'output/tucan_scale_down.jpg';
   let pixels = handler.getPixels();
 
-  //Aqui tu codigo
+  let newPixels = [];
+  let rows = pixels.filter((row) => pixels.indexOf(row) % 2 == 0);
+  rows.forEach((row) => { 
+    newPixels.push(row.filter((col) => row.indexOf(col) % 2 == 0));
+  });
 
-  handler.savePixels(pixels, outputPath, handler.getShape()[0] / 2, handler.getShape()[1] / 2);
+  handler.savePixels(newPixels, outputPath, handler.getShape()[0] / 2, handler.getShape()[1] / 2);
 }
 
 /**
@@ -228,7 +232,7 @@ function merge(alphaFirst, alphaSecond) {
  *     Negativo: 8
  *     Fusion de imagenes: 9
  */
-let optionN = 5;
+let optionN = 6;
 
 switch (optionN) {
   case 1: redConverter(); break;
