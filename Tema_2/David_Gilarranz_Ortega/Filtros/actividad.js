@@ -193,7 +193,13 @@ function invertColors() {
   let outputPath = 'output/tucan_inverse.jpg';
   let pixels = handler.getPixels();
 
-  //Aqui tu codigo
+  for (let row = 0; row < pixels.length; row++) {
+    for (let col = 0; col < pixels[row].length; col++) {
+      for (let channel = 0; channel < pixels[row][col].length; channel++) {
+        pixels[row][col][channel] = 255 - pixels[row][col][channel];
+      }
+    }
+  }
 
   handler.savePixels(pixels, outputPath);
 }
@@ -238,7 +244,7 @@ function merge(alphaFirst, alphaSecond) {
  *     Negativo: 8
  *     Fusion de imagenes: 9
  */
-let optionN = 7;
+let optionN = 8;
 
 switch (optionN) {
   case 1: redConverter(); break;
