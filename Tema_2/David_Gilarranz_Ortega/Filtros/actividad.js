@@ -128,7 +128,17 @@ function blackAndWhiteConverter() {
   let outputPath = 'output/tucan_black_and_white.jpg';
   let pixels = handler.getPixels();
 
-  //Aqui tu codigo
+  for (let row = 0; row < pixels.length; row++) {
+    for (let col = 0; col < pixels[row].length; col++) {
+      let pixel = pixels[row][col];
+      let mean = (pixel[0] + pixel[1] + pixel[2]) / 3;
+      let value = mean < 128 ? 0 : 255;
+      
+      for (let channel = 0; channel < pixel.length; channel++) {
+        pixel[channel] = value;
+      }
+    }
+  }
 
   handler.savePixels(pixels, outputPath);
 }
@@ -218,7 +228,7 @@ function merge(alphaFirst, alphaSecond) {
  *     Negativo: 8
  *     Fusion de imagenes: 9
  */
-let optionN = 4;
+let optionN = 5;
 
 switch (optionN) {
   case 1: redConverter(); break;
